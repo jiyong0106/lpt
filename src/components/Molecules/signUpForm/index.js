@@ -4,6 +4,8 @@ import styles from "./signUpForm.module.scss";
 import { useForm } from "react-hook-form";
 import { email_reg, password_reg } from "@/utils/validation";
 import useEmailDuplicate from "@/components/api/userEmailDuplicate";
+import useSignUp from "@/components/api/userSignUp";
+import Link from "next/link";
 
 const SignUpForm = () => {
   const {
@@ -13,28 +15,44 @@ const SignUpForm = () => {
     watch,
     formState: { errors },
   } = useForm({ mode: "all" });
+
   const isEmailDuplicate = useEmailDuplicate(setError);
 
-  // const getUserSignUp = useSignUp();
+  const getUserSignUp = useSignUp();
+  
 
   const onSubmit = (data) => {
-    console.log(data);
+    getUserSignUp(data);
+    console.log(data)
   };
+
   return (
     <div className={styles.container}>
-      <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
+      <form
+        className={styles.form_container}
+        onSubmit={handleSubmit(onSubmit)}
+      >
+        <Input
+          placeholder='이름'
+          id='name'
+          type='text'
+          register={register("name", {
+            required: "이름을 입력해주세요",
+          })}
+        />
         <Input
           placeholder='이메일'
           id='email'
           type='email'
-          register={register("eamil", {
+          register={register("email", {
             required: "이메일을 입력해주세요",
             pattern: {
               value: email_reg,
               message: "이메일 형식이 아닙니다",
             },
             onBlur: (e) => isEmailDuplicate(e.target.value),
-          })}
+          })
+        }
         />
         {errors.email && (
           <p className={styles.email_error}>{errors.email.message}</p>
@@ -75,6 +93,9 @@ const SignUpForm = () => {
           </p>
         )}
         <Button name='버튼' />
+        <Link href={"./signin"}>
+          <span>로그인</span>
+        </Link>
       </form>
     </div>
   );

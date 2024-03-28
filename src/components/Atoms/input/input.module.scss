@@ -7,9 +7,21 @@
   background: white;
   padding-left: 20px;
   padding-top: 17px;
+  position: relative;
   
   input{
     width: 100%;
     background: white;
+  }
+
+  label{
+    width: 70px;
+    height: 20px;
+    background: white;
+    position: absolute;
+    bottom: 37px;
+    text-align: center;
+    font-weight: 600;
+
   }
 }
