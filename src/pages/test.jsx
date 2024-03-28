@@ -1,15 +1,12 @@
-
-import Button from "@/components/Atoms/button/button";
+import Input from "@/components/Atoms/input/index";
+import Button from "@/components/Atoms/button/index";
 
 const Test = () => {
-
-  const handleClick = ()=>{
-    alert('gd')
-  }
+  
   return (
     <>
-      <Button name='테스트임' onClick={handleClick}/>;
-      <div>x테스트1테스트2</div>
+      <Input placeholder='test'/>
+      <Button name='테스트'/>
     </>
   );
 };
