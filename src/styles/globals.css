@@ -5,13 +5,13 @@
 html{
   height: 100%;
   font-size: 62.5%;
+  font-family: 'Nanum Gothic';
 }
 
 body {
   height: 100%;
   padding: 0;
   margin: 0;
-  font-family: "Pretendard", Helvetica;
 }
 
 body,

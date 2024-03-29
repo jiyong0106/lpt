@@ -1,8 +1,8 @@
-import React from 'react'
+import SignInForm from '@/components/Molecules/signInForm'
 
 const SignIn = () => {
   return (
-    <div>SignIn</div>
+    <SignInForm/>
   )
 }
 

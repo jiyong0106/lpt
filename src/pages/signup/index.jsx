@@ -1,8 +1,9 @@
 import React from 'react'
+import SignUpForm from '@/components/Molecules/signUpForm'
 
 const SignUp = () => {
   return (
-    <div>SignUp</div>
+    <SignUpForm/>
   )
 }
 
