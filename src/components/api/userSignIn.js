@@ -11,7 +11,7 @@ const useUserSignIn = () => {
         data.email,
         data.password,
       );
-      router.push("./test");
+      router.push("./main");
     } catch (e) {
       console.error("error");
     }
