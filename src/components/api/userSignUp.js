@@ -1,23 +1,21 @@
-import { doc, setDoc, getDocs, collection, addDoc } from "firebase/firestore";
-import { db } from "@/../../firebase";
 import { useRouter } from "next/router";
+import { createUserWithEmailAndPassword } from "firebase/auth";
+import { auth } from "@/../../firebase";
 
-const useSignUp = () => {
-  const router = useRouter()
-
-  const getUserSignUp = async (data) => {
-    console.log(data)
+const useUserSignUp = () => {
+  const router = useRouter();
+  const userSignUp = async (data) => {
     try {
-      const res = await addDoc(collection(db, "User"), {
-        email: data.email,
-        name: data.name,
-      });
-      router.push('./')
+      const res = await createUserWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
+      router.push("./signin");
     } catch (e) {
-      console.error("회원가입error");
+      console.error("error");
     }
   };
-  return getUserSignUp;
+  return userSignUp;
 };
-
-export default useSignUp;
+export default useUserSignUp;

@@ -1,13 +1,25 @@
-import { doc, setDoc, getDocs, collection,onSnapshot } from "firebase/firestore";
-import { db } from "@/../../firebase";
-import axios from "axios";
+import { auth } from "@/../../firebase";
+import { signInWithEmailAndPassword } from "firebase/auth";
+import { useRouter } from "next/router";
 
-const getUserSignIn = async () => {
-  const res = await getDocs(collection(db, "User"));
-  const result = res.docs.map((doc) => doc.data());
-  return result;
+const useUserSignIn = () => {
+  const router = useRouter();
+  const userSignIn = async (data) => {
+    try {
+      const res = await signInWithEmailAndPassword(
+        auth,
+        data.email,
+        data.password,
+      );
+      router.push("./main");
+    } catch (e) {
+      console.error("error");
+    }
+  };
+  return userSignIn;
 };
-export default getUserSignIn
+export default useUserSignIn;
+
 
 //data 는 인풋에 입력되는 data (react-hook-form)
 //http://localhost:3000/api/profile

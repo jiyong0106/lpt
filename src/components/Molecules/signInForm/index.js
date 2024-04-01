@@ -2,7 +2,7 @@ import styles from "./signInForm.module.scss";
 import Button from "@/components/Atoms/button";
 import Input from "@/components/Atoms/input";
 import { useForm } from "react-hook-form";
-
+import useUserSignIn from "@/components/api/userSignIn";
 const SignInForm = () => {
   const {
     register,
@@ -12,7 +12,10 @@ const SignInForm = () => {
     formState: { errors },
   } = useForm({ mode: "all" });
 
-  const onSubmit = (data) => {
+  const userSignIn = useUserSignIn();
+  
+  const onSubmit = async (data) => {
+    userSignIn(data);
     console.log(data);
   };
 
@@ -23,7 +26,7 @@ const SignInForm = () => {
           id='email'
           type='email'
           placeholder='이메일'
-          label="email"
+          label='email'
           register={register("email", {
             required: "이메일을 입력해주세요",
           })}
@@ -35,8 +38,7 @@ const SignInForm = () => {
           id='password'
           type='password'
           placeholder='password'
-          label="password"
-
+          label='password'
           register={register("password", {
             required: "패스워드를 입력해주세요",
           })}

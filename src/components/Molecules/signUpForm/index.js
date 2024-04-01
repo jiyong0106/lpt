@@ -4,7 +4,7 @@ import styles from "./signUpForm.module.scss";
 import { useForm } from "react-hook-form";
 import { email_reg, password_reg } from "@/utils/validation";
 import useEmailDuplicate from "@/components/api/userEmailDuplicate";
-import useSignUp from "@/components/api/userSignUp";
+import useUserSignUp from "@/components/api/userSignUp";
 import Link from "next/link";
 
 const SignUpForm = () => {
@@ -17,21 +17,15 @@ const SignUpForm = () => {
   } = useForm({ mode: "all" });
 
   const isEmailDuplicate = useEmailDuplicate(setError);
+  const userSignUp = useUserSignUp()
 
-  const getUserSignUp = useSignUp();
-  
-
-  const onSubmit = (data) => {
-    getUserSignUp(data);
-    console.log(data)
+  const onSubmit = async (data) => {
+    userSignUp(data)
   };
 
   return (
     <div className={styles.container}>
-      <form
-        className={styles.form_container}
-        onSubmit={handleSubmit(onSubmit)}
-      >
+      <form className={styles.form_container} onSubmit={handleSubmit(onSubmit)}>
         <Input
           placeholder='이름'
           id='name'
@@ -51,8 +45,7 @@ const SignUpForm = () => {
               message: "이메일 형식이 아닙니다",
             },
             onBlur: (e) => isEmailDuplicate(e.target.value),
-          })
-        }
+          })}
         />
         {errors.email && (
           <p className={styles.email_error}>{errors.email.message}</p>
