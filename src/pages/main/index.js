@@ -1,6 +1,11 @@
-
+import Header from "@/components/Molecules/header";
 const MainPage = () => {
-  return <div>MainPage</div>;
+  
+  return (
+    <div>
+      <Header />
+    </div>
+  );
 };
 
 export default MainPage;

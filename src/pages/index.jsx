@@ -3,7 +3,7 @@ import Link from "next/link";
 import Button from "@/components/Atoms/button";
 import { auth } from "../../firebase";
 import { useRouter } from "next/router";
-import SignInForm from "@/components/Molecules/signInForm";
+import SignInForm from "@/components/Organism/signInForm";
 
 export default function Home() {
   // const router = useRouter();

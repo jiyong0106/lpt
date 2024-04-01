@@ -16,7 +16,6 @@ const SignInForm = () => {
   
   const onSubmit = async (data) => {
     userSignIn(data);
-    console.log(data);
   };
 
   return (

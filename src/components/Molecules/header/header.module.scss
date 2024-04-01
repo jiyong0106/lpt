@@ -1,0 +1,19 @@
+.container {
+  width: 100%;
+  height: 80px;
+  border-bottom: 1px solid gray;
+  padding: 10px;
+
+  .cotent {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    .search_wrapper {
+      width: 600px;
+    }
+    .btn_wrapper {
+      width: 100px;
+    }
+  }
+}
